@@ -1,0 +1,260 @@
+/* ======== style.css ======== */
+
+/* الخطوط العربية */
+body {
+    font-family: 'Tajawal', 'Cairo', 'Aref Ruqaa', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f0f4ff, #cce6ff);
+    color: #333;
+}
+
+/* صفحة تسجيل الدخول */
+#loginPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+.loginCard {
+    background: #ffffffdd;
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    width: 320px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.loginLogo {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #004080;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #004080;
+    margin-bottom: 20px;
+}
+
+.loginCard input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.loginBtn {
+    background: linear-gradient(90deg, #ff9900, #ff6600);
+    color: #fff;
+    padding: 12px 0;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.loginBtn:hover {
+    background: linear-gradient(90deg, #ffb733, #ff8533);
+}
+
+#errorMsg {
+    color: red;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+/* ===== الصفحة الرئيسية ===== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #004080;
+    padding: 10px 20px;
+    color: white;
+}
+
+.headerLogos img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.headerTitle {
+    font-size: 18px;
+    font-weight: 700;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.logoutBtn {
+    background: #ff3333;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logoutBtn:hover {
+    background: #ff6666;
+}
+
+/* الحاوية الرئيسية */
+.container {
+    padding: 20px;
+}
+
+/* إضافة أصل */
+.addAsset h3 {
+    margin-bottom: 10px;
+    color: #004080;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.formGrid input, .formGrid select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.saveBtn {
+    background: #00cc66;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.saveBtn:hover {
+    background: #00ff88;
+}
+
+/* جدول الأصول */
+.assetsTable h3 {
+    margin-bottom: 10px;
+    color: #004080;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 13px;
+}
+
+table thead {
+    background: #004080;
+    color: #fff;
+    font-weight: 700;
+}
+
+table th, table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background: #e6f2ff;
+}
+
+table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.delete-btn {
+    background: #ff3333;
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #ff6666;
+}
+
+/* الباركود */
+.barcode {
+    display: block;
+    margin: auto;
+    width: 120px;
+}
+
+/* إحصائيات أسفل الجدول */
+#stats {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* أزرار التحكم */
+.buttons {
+    margin-top: 15px;
+}
+
+.buttons button {
+    background: #004080;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px 3px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.buttons button:hover {
+    background: #0066cc;
+}
+
+/* استجابة الهواتف */
+@media (max-width: 768px) {
+    .formGrid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    .headerTitle {
+        font-size: 16px;
+    }
+}

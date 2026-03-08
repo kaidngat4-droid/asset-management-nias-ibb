@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نظام إدارة الأصول - المعهد الوطني للعلوم الإدارية فرع إب</title>
+
+<!-- الخطوط العربية -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Cairo:wght@400;700&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+
+<body>
+
+<!-- صفحة تسجيل الدخول -->
+<div id="loginPage">
+  <div class="loginCard">
+    <img src="assets/logo.png" class="loginLogo">
+    <h1 class="title">الجرد الإلكتروني لإدارة الأصول</h1>
+    <p class="subtitle">
+      الجمهورية اليمنية<br>
+      المعهد الوطني للعلوم الإدارية<br>
+      فرع إب
+    </p>
+    <input type="text" id="username" placeholder="اسم المستخدم">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button class="loginBtn" onclick="login()">تسجيل الدخول</button>
+    <div id="errorMsg"></div>
+  </div>
+</div>
+
+<!-- الصفحة الرئيسية للتطبيق -->
+<div id="appPage" style="display:none">
+  <header>
+    <div class="headerLogos">
+      <img src="assets/logo.png">
+      <img src="assets/logo-institute.png">
+    </div>
+    <span class="headerTitle">إدارة الأصول – المعهد الوطني للعلوم الإدارية فرع إب</span>
+    <button onclick="logout()" class="logoutBtn">تسجيل خروج</button>
+  </header>
+
+  <div class="container">
+    <!-- إضافة أصل -->
+    <section class="addAsset">
+      <h3>➕ إضافة أصل جديد</h3>
+      <div class="formGrid">
+        <input id="assetId" readonly placeholder="رقم الأصل">
+        <input id="itemName" placeholder="اسم الأصل">
+        <input id="quantity" type="number" value="1" placeholder="العدد">
+        <input id="value" placeholder="القيمة التقديرية">
+        <input id="depreciation" placeholder="نسبة الإهلاك %">
+        <input id="entryDate" type="date">
+        <select id="condition">
+          <option value="">حالة الأصل</option>
+          <option>جديد</option>
+          <option>جيد</option>
+          <option>يحتاج صيانة</option>
+          <option>تالف</option>
+        </select>
+        <input type="file" id="imageInput" accept="image/*">
+      </div>
+      <button class="saveBtn" onclick="addItem()">حفظ الأصل</button>
+    </section>
+
+    <hr>
+
+    <!-- جدول الأصول -->
+    <section class="assetsTable">
+      <h3>📋 سجل الأصول</h3>
+      <input id="searchInput" placeholder="بحث..." onkeyup="searchTable()">
+
+      <table id="inventoryTable">
+        <thead>
+          <tr>
+            <th>رقم الأصل</th>
+            <th>الصنف</th>
+            <th>العدد</th>
+            <th>القيمة</th>
+            <th>الإهلاك %</th>
+            <th>القيمة بعد الإهلاك</th>
+            <th>التاريخ</th>
+            <th>الحالة</th>
+            <th>الصورة</th>
+            <th>الباركود</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+
+      <div id="stats">
+        عدد الأصول: <span id="totalAssets">0</span><br>
+        إجمالي القيمة بعد الإهلاك: <span id="totalAfter">0</span> ريال
+      </div>
+
+      <div class="buttons">
+        <button onclick="exportToExcel()">📥 تنزيل Excel</button>
+        <button onclick="window.print()">🖨 طباعة</button>
+        <button onclick="exportToJSON()">💾 نسخة احتياطية</button>
+        <button onclick="clearAllData()">🗑 مسح جميع البيانات</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="database.js"></script>
+<script src="app.js"></script>
+<script src="excel.js"></script>
+<script>
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+</body>
+</html>
