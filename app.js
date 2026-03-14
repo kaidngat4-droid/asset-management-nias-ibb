@@ -312,3 +312,63 @@ loadAssets();
 }
 
 }
+function openReports(){
+
+let rows = document.querySelectorAll("#tableBody tr");
+
+let reportBody = document.getElementById("reportBody");
+
+reportBody.innerHTML="";
+
+let newCount = 0;
+let goodCount = 0;
+let repairCount = 0;
+let damagedCount = 0;
+
+rows.forEach(row=>{
+
+let name = row.children[1].innerText;
+let qty = parseInt(row.children[2].innerText);
+let condition = row.children[7].innerText;
+
+reportBody.innerHTML += `
+<tr>
+<td>${name}</td>
+<td>${qty}</td>
+<td>${condition}</td>
+</tr>
+`;
+
+if(condition==="جديد") newCount+=qty;
+if(condition==="جيد") goodCount+=qty;
+if(condition==="يحتاج صيانة") repairCount+=qty;
+if(condition==="تالف") damagedCount+=qty;
+
+});
+
+document.getElementById("totalNew").innerText=newCount;
+document.getElementById("totalGood").innerText=goodCount;
+document.getElementById("totalRepair").innerText=repairCount;
+document.getElementById("totalDamaged").innerText=damagedCount;
+
+document.getElementById("reportsPage").style.display="block";
+
+/* رسم المخطط */
+
+const ctx = document.getElementById('conditionChart');
+
+new Chart(ctx,{
+type:'pie',
+data:{
+labels:['جديد','جيد','يحتاج صيانة','تالف'],
+datasets:[{
+data:[newCount,goodCount,repairCount,damagedCount]
+}]
+}
+});
+
+}
+
+function closeReports(){
+document.getElementById("reportsPage").style.display="none";
+}
