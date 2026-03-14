@@ -295,3 +295,45 @@ background-position:300%;
 }
 
 }
+.reportsPage{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+overflow:auto;
+padding:30px;
+z-index:999;
+
+}
+
+.reportTable{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+.reportTable th,
+.reportTable td{
+
+border:1px solid #ddd;
+padding:8px;
+text-align:center;
+
+}
+
+.reportTable th{
+
+background:#0d6efd;
+color:white;
+
+}
+
+.reportTotals{
+
+margin-top:20px;
+font-size:18px;
+
+}
