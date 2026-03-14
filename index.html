@@ -123,6 +123,42 @@
     </section>
   </div>
 </div>
+  <div id="reportsPage" class="reportsPage" style="display:none">
+
+<h2>📊 لوحة تقارير الأصول</h2>
+
+<canvas id="conditionChart"></canvas>
+
+<br>
+
+<table class="reportTable">
+
+<thead>
+<tr>
+<th>اسم الأصل</th>
+<th>العدد</th>
+<th>الحالة</th>
+</tr>
+</thead>
+
+<tbody id="reportBody"></tbody>
+
+</table>
+
+<div class="reportTotals">
+
+<p>🆕 الجديد: <span id="totalNew">0</span></p>
+<p>✅ الجيد: <span id="totalGood">0</span></p>
+<p>🔧 يحتاج صيانة: <span id="totalRepair">0</span></p>
+<p>❌ التالف: <span id="totalDamaged">0</span></p>
+
+</div>
+
+<br>
+
+<button onclick="closeReports()">إغلاق</button>
+
+  </div>
 
 <script src="database.js"></script>
 <script src="app.js"></script>
