@@ -27,6 +27,7 @@ const totalAfter = document.getElementById("totalAfter");
 const searchInput = document.getElementById("searchInput");
 
 let lastId = 0;
+let chart = null;
 
 ////////////////////////
 // تسجيل الدخول
@@ -101,7 +102,6 @@ function addItem(){
 if(!itemName.value){
 
 alert("ادخل اسم الأصل");
-
 return;
 
 }
@@ -109,7 +109,6 @@ return;
 if(!imageInput.files[0]){
 
 alert("أضف صورة الأصل");
-
 return;
 
 }
@@ -153,6 +152,7 @@ loadAssets();
 reader.readAsDataURL(imageInput.files[0]);
 
 }
+
 ////////////////////////
 // تحميل الأصول
 ////////////////////////
@@ -254,7 +254,7 @@ row.style.display = row.innerText.toLowerCase().includes(val) ? "" : "none";
 // النسخة الاحتياطية
 ////////////////////////
 
-function backup(){
+function exportToJSON(){
 
 const tx = db.transaction("assets","readonly");
 
@@ -295,7 +295,7 @@ link.click();
 // مسح جميع البيانات
 ////////////////////////
 
-function clearAll(){
+function clearAllData(){
 
 if(confirm("هل تريد حذف جميع البيانات؟")){
 
@@ -312,6 +312,11 @@ loadAssets();
 }
 
 }
+
+////////////////////////
+// لوحة التقارير
+////////////////////////
+
 function openReports(){
 
 let rows = document.querySelectorAll("#tableBody tr");
@@ -353,16 +358,19 @@ document.getElementById("totalDamaged").innerText=damagedCount;
 
 document.getElementById("reportsPage").style.display="block";
 
-/* رسم المخطط */
+const ctx = document.getElementById("conditionChart").getContext("2d");
 
-const ctx = document.getElementById('conditionChart');
+if(chart){
+chart.destroy();
+}
 
-new Chart(ctx,{
+chart = new Chart(ctx,{
 type:'pie',
 data:{
 labels:['جديد','جيد','يحتاج صيانة','تالف'],
 datasets:[{
-data:[newCount,goodCount,repairCount,damagedCount]
+data:[newCount,goodCount,repairCount,damagedCount],
+backgroundColor:["#4CAF50","#2196F3","#FFC107","#F44336"]
 }]
 }
 });
@@ -370,5 +378,7 @@ data:[newCount,goodCount,repairCount,damagedCount]
 }
 
 function closeReports(){
+
 document.getElementById("reportsPage").style.display="none";
+
 }
